@@ -2,7 +2,8 @@
 #include<stdio.h>
 #include<pthread.h> 
 #include <unistd.h> 
-
+#define MAXTHREADS 10 /* Nombre max de threads pouvant être créés */
+#define NUMTHREADS 5 /* Nombre de threads à créer */
 
 void *threadFunction(void){ 
   pthread_t mon_tid; 
@@ -15,7 +16,7 @@ void *threadFunction(void){
   printf("Thread (0x)%x : FIN\n", (int)mon_tid); 
   pthread_exit(NULL); 
 }
- /*debut du programme principal*/
+
 int main(){ 
    int i; 
    
@@ -25,15 +26,14 @@ int main(){
    srand(time(NULL)); 
    thread_main = pthread_self(); 
   
-/*nombre de thread a creer*/
+
         printf("Introduisez le nombre de threads a créer: \n");
         scanf("%d",&nbthread);
- /*boucle de control sur le nombre lu en console*/
                 while(nbthread>10||nbthread<0){
                         printf("Veuillez Introduire une valeur entre 0 et 10");
                         scanf("%d",&nbthread);
                                 };
-/*boucle de creation de thread*/
+
 for(i=0; i<nbthread; i++){
         
         int creation=pthread_create(&threads[i], NULL,(void *)threadFunction,NULL);
@@ -53,5 +53,5 @@ for(i=0; i<nbthread; i++){
 
 
   return 0;
-} /*fin du programme principal*/
+} 
 

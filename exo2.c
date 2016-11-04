@@ -1,18 +1,25 @@
 #include<stdlib.h>
 #include<stdio.h>
-#include<pthread.h> 
-#include <unistd.h> 
+#include<pthread.h>
+#include <unistd.h>
 
-
+#define NBMAX 50
 /*procedure d'intialisation de la matrice aleatoirement*/
-void initialisationmatrice(int mat[][],  int *n){
- 
+void initialisationmatrice(int mat[NBMAX ][NBMAX ],  int *n){
 
-prinft("Introduire la dimension de votre matrice carree: ");
+int i,j;
+printf("Introduire la dimension de votre matrice carree: ");
 scanf("%d",n);
 printf("\n\n\n");
-for(int i=0; i<*n; i++){
-	for(int j=0; j<*n;j++){
+while(*n<0||*n>NBMAX){
+printf("Veuillez reintroduire la dimention de votre matrice :");
+scanf("%d",n);
+printf("\n\n\n");
+
+
+};
+for( i=0; i<*n; i++){
+	for( j=0; j<*n;j++){
 		mat[i][j]=rand()%10;
 
 		}
@@ -21,10 +28,10 @@ for(int i=0; i<*n; i++){
 
 /*procedure d'affichage de la matrice*/
 
-void affihagematrice(int mat[][], int *n){
-
-for(int i=0; i<*n; i++){
-	for(int j=0; j<*n;j++){
+void affihagematrice(int mat[NBMAX ][NBMAX ], int *n){
+int i,j;
+for(i=0; i<*n; i++){
+	for(j=0; j<*n;j++){
 		printf("%d | ",mat[i][j]);
 
 		}
@@ -39,19 +46,19 @@ for(int i=0; i<*n; i++){
 
 int main(){
 
-int mat[10][10];
+int mat[NBMAX ][NBMAX ];
 int nbligne,nbcolonne;
 int i,j,create;
 
 
 
-pritnf("Initialisation de la matrice : \n");
+printf("Initialisation de la matrice : \n");
 
 /*appel de la procedure d'intialisation de la matrice */
-initialisationmatrice(mat,&n);
+initialisationmatrice(&mat[NBMAX ][NBMAX ],&nbligne);
 /*appel de la procedure qui affiche les elements de la matrice*/
 
-affihagematrice(mat,&n);
+affihagematrice(&mat[NBMAX ][NBMAX ],&nbligne);
 
 
 

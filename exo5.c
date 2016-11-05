@@ -50,7 +50,7 @@ srand(time(NULL));
 
     }
 
-
+    sem_destroy(&semaph);
 pthread_exit(0);
 
 

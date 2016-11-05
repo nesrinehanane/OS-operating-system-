@@ -59,7 +59,7 @@ void affichage4(void){
 int main(void){
 
 pthread_t th1, th2, th3, th4;
- sem_init(&s1,0,0);
+ sem_init(&s1,0,1);
  sem_init(&s2,0,0);
  sem_init(&s3,0,0);
  sem_init(&s4,0,0);

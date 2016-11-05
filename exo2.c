@@ -37,12 +37,12 @@ for(i=0; i<NBMAX; i++){
 
 
 }
-
+/*la procedure qui fait la somme des elements de chaque ligne*/
 void* somme(void *i){
-long num_ligne= (intptr_t)i;
+long num_ligne= (long)i;
 long j;
 
-sum[num_ligne]=0;
+sum[num_ligne]=0.0;
 
 for(j=0;j<NBMAX;j++){
     sum[num_ligne]=sum[num_ligne]+mat[num_ligne][j];
@@ -56,11 +56,11 @@ for(j=0;j<NBMAX;j++){
 int main(){
 
 
-int j,create ; float sum;
+int create ; float som;
 long i;
 pthread_t thread[NBMAX];
 
-sum=0;
+som=0.0;
 
 
 
@@ -71,6 +71,7 @@ printf("Initialisation de la matrice : \n");
 
 /*appel de la procedure qui affiche les elements de la matrice*/
 affihagematrice(mat);
+
 /*procedure de creation de nbthread*/
 for(i=0; i<NBMAX; i++){
 
@@ -82,6 +83,19 @@ for(i=0; i<NBMAX; i++){
                      exit(0);
                       }
                       }
+
+
+printf("Le main attend la fin des N threads crees \n");
+for(i=0;i<NBMAX;i++){
+pthread_join(thread[i],NULL);
+
+}
+
+
+for(i=0; i<NBMAX;i++){
+som=som+sum[i];}
+printf("La somme des elements de la matrice = %f\n",som);
+printf("fin du main\n");
 
 
 

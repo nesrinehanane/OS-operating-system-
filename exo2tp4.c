@@ -13,7 +13,7 @@ condition notfull, notempty;
 
 pthread_mutex_t mutex =PTHREAD_MUTEX_INITIALIZER;
 
-
+//and what about this one ?
 void produce_char ( char x)
 {
 
@@ -27,6 +27,7 @@ if (count == N)
 	cond_signal (notempty);
 }
 
+//is this one correcte?
 
 /* Fonction exécutée par les threads consommateur */
 void take (char *x) { // retirer un caractère du buffer
@@ -50,7 +51,7 @@ long i;
 
     for(i=0;i<NP;i++){
        
-        create_P=pthread_create(&thread_P[i],NULL,(void *)produce_char,buffer[i]);
+        create_P=pthread_create(&thread_P[i],NULL,(void *)produce_char,buffer[i]);//i don't know what to put here in the parametre of produce_char
         if(create_P){
             printf("Erreur de creation de thread %d\n",create);
             exit(-1);
@@ -60,7 +61,7 @@ long i;
     }
 for(i=0;i<NC;i++){
        
-        create_C=pthread_create(&thread_C[i],NULL,(void *)take,(void *));
+        create_C=pthread_create(&thread_C[i],NULL,(void *)take,(void *));//here too 
         if(create_C){
             printf("Erreur de creation de thread %d\n",create);
             exit(-1);

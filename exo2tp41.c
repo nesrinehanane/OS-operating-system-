@@ -92,7 +92,8 @@ pthread_join(thread_C[i],NULL);
 //destruction des variables de condition
 
 pthread_cond_destroy(&notfull); 
-pthread_cond_destroy(&notempty)
+pthread_cond_destroy(&notempty);
+
 
 pthread_exit(0);
 

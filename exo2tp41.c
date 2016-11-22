@@ -12,12 +12,14 @@ char buffer [N];
 int nextin = 0, nextout = 0;
 int count = 0;
 
+//initialisation des variables de condition
 pthread_cond_t notfull= PTHREAD_COND_INITIALIZER;
 pthread_cond_t notempty= PTHREAD_COND_INITIALIZER;
 
+//initialisation du mutex
 pthread_mutex_t mutex =PTHREAD_MUTEX_INITIALIZER;
 
-
+//Fonction exécutée par les threads producteurs
 void produce_char( void * args){
 char x;
 	if (count == N)
@@ -51,6 +53,7 @@ pthread_t thread_C[NC];
 int createP, createC;
 long i;
 
+//creation des threads producteurs 
     for(i=0;i<NP;i++){
 
         createP=pthread_create(&thread_P[i],NULL,(void *)produce_char,NULL);
@@ -61,6 +64,8 @@ long i;
         }
 
     }
+
+//creation des threads consommateurs
 for(i=0;i<NC;i++){
 
         createC=pthread_create(&thread_C[i],NULL,(void *)take,NULL);
@@ -72,6 +77,8 @@ for(i=0;i<NC;i++){
 
     }
 
+
+//jointures des threads avec le thread main
 printf("Le main attend la fin des threads producteur \n");
 for(i=0;i<NP;i++){
 pthread_join(thread_P[i],NULL);
@@ -82,8 +89,10 @@ for(i=0;i<NC;i++){
 pthread_join(thread_C[i],NULL);
 
 }
+//destruction des variables de condition
 
-
+pthread_cond_destroy(&notfull); 
+pthread_cond_destroy(&notempty)
 
 pthread_exit(0);
 
